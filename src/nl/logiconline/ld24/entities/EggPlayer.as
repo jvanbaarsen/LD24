@@ -14,7 +14,7 @@ package nl.logiconline.ld24.entities {
 	public class EggPlayer extends Player {
 		public function EggPlayer(startPoint:FlxPoint)	{
 			super(startPoint);
-			this.loadGraphic(Resources.player, false, true, 16, 16, true);
+			this.loadGraphic(Resources.player, false, true, 32, 32, true);
 			
 		}
 	}

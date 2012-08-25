@@ -10,15 +10,13 @@ package nl.logiconline.ld24.levels {
 	import nl.logiconline.ld24.utils.Resources;
 	
 	import org.flixel.FlxObject;
+	import org.flixel.FlxSprite;
 	import org.flixel.FlxTilemap;
 
 	public class BaseLevel extends Level {
 		public function BaseLevel() {
 			//Background
-			this.background = new FlxTilemap();
-			this.background.loadMap(new Resources.base_background, Resources.tiles, 10, 10);
-			this.background.setTileProperties(0, FlxObject.NONE, null, null, 100);
-			this.add(this.background);
+			add(new FlxSprite(9,49, Resources.background));
 			
 			//Foreground
 			this.map = new FlxTilemap();

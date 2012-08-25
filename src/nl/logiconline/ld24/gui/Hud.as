@@ -69,11 +69,11 @@ package nl.logiconline.ld24.gui {
 		
 		override public function update():void {
 			super.update();
-			this.intellectBar.setValue(Globals.intellect);
-			this.hygieneBar.setValue(Globals.hygiene);
-			this.energyBar.setValue(Globals.energy);
-			this.funBar.setValue(Globals.fun);
-			this.hungerBar.setValue(Globals.hunger);
+			this.intellectBar.setValue(Math.round(Globals.intellect));
+			this.hygieneBar.setValue(Math.round(Globals.hygiene));
+			this.energyBar.setValue(Math.round(Globals.energy));
+			this.funBar.setValue(Math.round(Globals.fun));
+			this.hungerBar.setValue(Math.round(Globals.hunger));
 		}
 		
 	}

@@ -10,8 +10,7 @@ package nl.logiconline.ld24.utils {
 	public class Resources {
 		
 		//Levels
-		[Embed(source = '../res/levels/mapCSV_Base_foreground.csv', mimeType = 'application/octet-stream')] public static var base_map:Class;
-		[Embed(source = '../res/levels/mapCSV_Base_background.csv', mimeType = 'application/octet-stream')] public static var base_background:Class;
+		[Embed(source = '../res/levels/mapCSV_Base_foreground.csv', mimeType = 'application/octet-stream')] public static var base_map:Class;		
 		
 		//Sprites
 		[Embed(source = '../res/sprites/tiles.png')] public static var tiles:Class;
@@ -19,6 +18,7 @@ package nl.logiconline.ld24.utils {
 		[Embed(source = '../res/sprites/hud.png')] public static var hud:Class;
 		[Embed(source = '../res/sprites/portrait.png')] public static var portrait:Class;
 		[Embed(source = '../res/sprites/actions.png')] public static var actions:Class;
+		[Embed(source = '../res/sprites/background.png')] public static var background:Class;
 		
 		//Bars
 		[Embed(source = '../res/sprites/bar.png')] public static var bar:Class;
