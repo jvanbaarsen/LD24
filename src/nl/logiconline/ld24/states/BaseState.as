@@ -81,7 +81,9 @@ package nl.logiconline.ld24.states {
 			
 			this.music = new FlxSound();
 			this.music.loadEmbedded(Resources.music, true);			
-			this.music.play();
+			//Not sure if it complies with the compo rules... :P
+			//this.music.play();
+			
 		}	
 		
 		override public function update():void {
