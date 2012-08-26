@@ -49,19 +49,19 @@ package nl.logiconline.ld24.gui {
 			this.portrait = new Portrait(20, 5);
 			this.add(this.portrait);
 			
-			this.teachAction = new ActionButton(FlxG.width / 2 - 75,FlxG.height - 35, "teach");
+			this.teachAction = new ActionButton(FlxG.width / 2 - 75,FlxG.height - 40, "teach");
 			this.add(teachAction);
 			
-			this.cleanAction = new ActionButton(FlxG.width / 2 - 44,FlxG.height - 35, "clean");
+			this.cleanAction = new ActionButton(FlxG.width / 2 - 44,FlxG.height - 40, "clean");
 			this.add(cleanAction);
 			
-			this.sleepAction = new ActionButton(FlxG.width / 2 - 13,FlxG.height - 35,"sleep");
+			this.sleepAction = new ActionButton(FlxG.width / 2 - 13,FlxG.height - 40,"sleep");
 			this.add(sleepAction);
 			
-			this.playAction = new ActionButton(FlxG.width / 2 + 18,FlxG.height - 35,"play");
+			this.playAction = new ActionButton(FlxG.width / 2 + 18,FlxG.height - 40,"play");
 			this.add(playAction);
 			
-			this.feedAction = new ActionButton(FlxG.width / 2 + 49,FlxG.height - 35,"feed");
+			this.feedAction = new ActionButton(FlxG.width / 2 + 49,FlxG.height - 40,"feed");
 			this.add(feedAction);
 			
 			

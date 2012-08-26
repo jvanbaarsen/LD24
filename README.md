@@ -2,27 +2,47 @@ LD24 - Theme is EVOLUTION
 ====
 
 
-
-
-
 ======================================================================
 TODO
 ====
+- Make creature walk more random
+- Draw desk with computer
+- Reach first playable release
+- Create sleeping animation
+- Create a steam particle effect
+- Create a way to feed to creature
+- Think of an aging system
+- Autosaving
+- Autoloading
 
+----------------When time-----------------
+- Create a simple platformer game (mini-game)
+- Create a simple word guess game
+- Create think balloons
 
 NEXT UP
 ====
-- Think out the rest of the game xD
-- Create Play state
+- Text to show that creature is not hungry
+
 
 
 DONE
 =====
+- Make the poo disappear a bit more smooth :-)
+- Create a cleaning animation
+- Create a way to clean up the poo
+- Create floating text particle
+- Create characters
+- Create base level
+- Think out the rest of the game xD (sorta)
+- Create Play state
 - Add Flixel to the project
 - Create Menu state
 - Basic project setup
 
 ======================================================================
+
+
 
 
 STATES you willl get:

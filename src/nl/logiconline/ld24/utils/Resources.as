@@ -19,6 +19,10 @@ package nl.logiconline.ld24.utils {
 		[Embed(source = '../res/sprites/portrait.png')] public static var portrait:Class;
 		[Embed(source = '../res/sprites/actions.png')] public static var actions:Class;
 		[Embed(source = '../res/sprites/background.png')] public static var background:Class;
+		[Embed(source = '../res/sprites/books.png')] public static var books:Class;
+		[Embed(source = '../res/sprites/bottles.png')] public static var bottles:Class;
+		[Embed(source = '../res/sprites/computer.png')] public static var computer:Class;
+		[Embed(source = '../res/sprites/chair.png')] public static var chair:Class;
 		
 		//Bars
 		[Embed(source = '../res/sprites/bar.png')] public static var bar:Class;

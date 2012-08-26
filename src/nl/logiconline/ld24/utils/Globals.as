@@ -18,11 +18,13 @@ package nl.logiconline.ld24.utils {
 		public static var gameName:String = "Ludum Dare 24";
 		public static var player:Player;
 		public static var currentLevel:Level;
-		public static var intellect:Number = 5.0;
-		public static var fun:Number = 5.0;
-		public static var hunger:Number = 5.0;
-		public static var hygiene:Number = 5.0;		
-		public static var energy:Number = 5.0;
+		public static var intellect:Number = 0.0;
+		public static var fun:Number = 10.0;
+		public static var hunger:Number = 10.0;
+		public static var hygiene:Number = 10.0;		
+		public static var energy:Number = 10.0;
+		
+		public static var poo:Array = new Array();
 		
 		public function Globals() {			
 		}

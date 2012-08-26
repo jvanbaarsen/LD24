@@ -7,6 +7,7 @@
  * @file ActionButton.as
  */
 package nl.logiconline.ld24.gui {
+	import nl.logiconline.ld24.entities.particles.FloatingText;
 	import nl.logiconline.ld24.utils.Globals;
 	import nl.logiconline.ld24.utils.Resources;
 	
@@ -48,17 +49,22 @@ package nl.logiconline.ld24.gui {
 			super.update();			
 			if(FlxG.mouse.x > this.button.x && FlxG.mouse.x < this.button.x + 26 && FlxG.mouse.y > this.button.y && FlxG.mouse.y < this.button.y + 26) {
 				if(FlxG.mouse.justPressed()) {
-					if(this.type == "teach") {
-						Globals.player.teach();
-					} else if(this.type == "clean") {
-						Globals.player.clean();
-					} else if(this.type == "sleep") {
-						Globals.player.sleep();
-					} else if(this.type == "play") {
-						Globals.player.fun();
-					} else if(this.type == "feed") {
-						Globals.player.feed();
+					if(Globals.player.isInAnimation()) {
+						add(new FloatingText(FlxG.mouse.x - 30, FlxG.mouse.y - 30, "Allready busy!"));
+					} else {
+						if(this.type == "teach") {
+							Globals.player.teach();
+						} else if(this.type == "clean") {
+							Globals.player.clean();
+						} else if(this.type == "sleep") {
+							Globals.player.sleep();
+						} else if(this.type == "play") {
+							Globals.player.fun();
+						} else if(this.type == "feed") {
+							Globals.player.feed();
+						}	
 					}
+					
 				}
 				this.button.frame = this.origFrame + 5;
 			} else {
