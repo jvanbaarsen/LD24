@@ -23,12 +23,18 @@ package nl.logiconline.ld24.utils {
 		[Embed(source = '../res/sprites/bottles.png')] public static var bottles:Class;
 		[Embed(source = '../res/sprites/computer.png')] public static var computer:Class;
 		[Embed(source = '../res/sprites/chair.png')] public static var chair:Class;
+		[Embed(source = '../res/sprites/bed.png')] public static var bed:Class;
+		[Embed(source = '../res/sprites/food.png')] public static var food:Class;
+		[Embed(source = '../res/sprites/splash.png')] public static var splash:Class;
+		[Embed(source = '../res/sprites/theend.png')] public static var theend:Class;
 		
 		//Bars
 		[Embed(source = '../res/sprites/bar.png')] public static var bar:Class;
 		[Embed(source = '../res/sprites/bar_glow.png')] public static var barGlow:Class;
 		[Embed(source = '../res/sprites/bar_active.png')] public static var barActive:Class;
 		
+		//Audio
+		[Embed(source = '../res/audio/music.mp3')] public static var music:Class;	
 		
 		
 		public function Resources() {

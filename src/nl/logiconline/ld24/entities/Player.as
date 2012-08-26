@@ -31,7 +31,10 @@ package nl.logiconline.ld24.entities {
 		private var inAnimation:Boolean = false;
 		
 		protected var sitSprite:FlxSprite;
+		protected var sleepSprite:FlxSprite
+		protected var eatSprite:FlxSprite;
 		private var chair:FlxSprite = new FlxSprite(206,151, Resources.chair);
+		private var bed:FlxSprite = new FlxSprite(15, 178);
 		
 		public function Player(startPoint:FlxPoint) {
 			this.x = startPoint.x;
@@ -42,7 +45,11 @@ package nl.logiconline.ld24.entities {
 			this.maxVelocity.x = this.PLAYER_RUN_SPEED;   
 			this.maxVelocity.y = this.JUMP_ACCELERATION;  
 			this.acceleration.y = this.GRAVITY_ACCELERATION; 
-			this.drag.x = this.maxVelocity.x*8;			
+			this.drag.x = this.maxVelocity.x*8;		
+			
+			
+			this.bed.loadGraphic(Resources.bed, true, false, 35, 12);
+			this.bed.frame = 1;
 		}
 		
 		public function setLocation(newPos:FlxPoint):void {
@@ -109,6 +116,7 @@ package nl.logiconline.ld24.entities {
 				FlxG.state.add(new FloatingText(this.x, this.y - 80, "Im way to depressed to learn!", true));
 				return;
 			}
+			this.play("read");
 			Globals.alterFun(-4);
 			Globals.alterEnergy(-2);
 			Globals.alterIntellect(1);
@@ -119,6 +127,7 @@ package nl.logiconline.ld24.entities {
 		public function stopTeaching(timer:FlxTimer):void {
 			this.inAnimation = false;
 			FlxG.state.add(new FloatingText(this.x, this.y, "+1 wisdom"));
+			this.play("idle");
 		}
 		
 		public function clean(pooClicked:Poo = null):void {
@@ -134,11 +143,13 @@ package nl.logiconline.ld24.entities {
 			Globals.alterFun(-1);
 			Globals.alterHygiene(1);
 			if(pooClicked != null) {
+				this.setLocation(new FlxPoint(pooClicked.x, this.y));
 				pooClicked.kill();
 			} else {
 				if(Globals.poo.length > 0) {	
-					var poo:Poo = Globals.poo.pop();
+					var poo:Poo = Globals.poo.pop();					
 					if(poo != null) {
+						this.setLocation(new FlxPoint(poo.x, this.y));
 						poo.kill();	
 					}					
 				}		
@@ -159,13 +170,21 @@ package nl.logiconline.ld24.entities {
 				return
 			}
 			this.inAnimation = true;
-			Globals.alterEnergy(1);			
+			this.visible = false;
+			FlxG.state.add(this.sleepSprite);
+			FlxG.state.add(this.bed);
+			Globals.alterEnergy(5);		
+			Globals.alterHunger(-1);
 			this.timer.start(2, 1, stopSleeping);
 		}
 		
 		public function stopSleeping(timer:FlxTimer):void {
 			this.inAnimation = false;
 			FlxG.state.add(new FloatingText(this.x, this.y, "+1 energy"));
+			FlxG.state.remove(this.sleepSprite);
+			FlxG.state.remove(this.bed);
+			this.visible = true;
+			this.setLocation(new FlxPoint(17, 150));
 			
 		}
 		
@@ -174,12 +193,17 @@ package nl.logiconline.ld24.entities {
 				FlxG.state.add(new FloatingText(FlxG.mouse.x - 30, FlxG.mouse.y - 30, "Allready busy!"));
 				return
 			}
+			if(Math.round(Globals.energy) <= 1) {
+				FlxG.state.add(new FloatingText(this.x, this.y - 80, "Im to tired to have fun!", true));
+				return;
+			}
 			if(Math.round(Globals.fun) == 10) {
 				FlxG.state.add(new FloatingText(this.x, this.y - 80, "I had way to much fun allready!", true));
 				return
 			}
 			this.inAnimation = true;
-			Globals.alterFun(1);			
+			Globals.alterFun(2);
+			Globals.alterEnergy(-1);
 			this.visible = false;
 			FlxG.state.add(this.sitSprite);
 			FlxG.state.add(this.chair);
@@ -195,6 +219,18 @@ package nl.logiconline.ld24.entities {
 			
 		}
 		
+		public function drink():void {
+			if(Globals.player.isInAnimation()) {
+				FlxG.state.add(new FloatingText(FlxG.mouse.x - 30, FlxG.mouse.y - 30, "Allready busy!"));
+				return
+			}
+			if(Math.round(Globals.hunger) == 10) {
+				FlxG.state.add(new FloatingText(this.x, this.y - 80, "Im not thirsty!", true));
+				return;
+			}
+			Globals.alterHunger(1);
+		}
+		
 		public function feed():void {
 			if(Globals.player.isInAnimation()) {
 				FlxG.state.add(new FloatingText(FlxG.mouse.x - 30, FlxG.mouse.y - 30, "Allready busy!"));
@@ -204,7 +240,17 @@ package nl.logiconline.ld24.entities {
 				FlxG.state.add(new FloatingText(this.x, this.y - 80, "Im not hungry!", true));
 				return;
 			}
-			Globals.alterHunger(1);
+			this.visible = false;
+			Globals.alterHunger(1);			
+			FlxG.state.add(this.eatSprite);
+			this.timer.start(1, 1, stopEating);			
+		}
+		
+		public function stopEating(timer:FlxTimer):void {
+			this.inAnimation = false;			
+			FlxG.state.remove(this.eatSprite);
+			this.visible = true;
+			this.setLocation(new FlxPoint(145,159));
 		}
 		
 		public function isInAnimation():Boolean {

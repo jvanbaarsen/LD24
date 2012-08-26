@@ -25,8 +25,10 @@ package nl.logiconline.ld24.entities.droppables {
 		private var smokeEmitter:FlxEmitter;
 		private var timer:FlxTimer = new FlxTimer();
 		private var tooltip:FlxText;
+		public var x:int;
 		public function Poo(x:int, y:int) {
 			sprite = new FlxSprite(x, y);
+			this.x = x;
 			sprite.loadGraphic(Resources.tiles, false, false, 10, 10);
 			sprite.frame = 30;
 			add(sprite);

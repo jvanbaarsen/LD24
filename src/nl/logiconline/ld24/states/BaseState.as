@@ -14,9 +14,11 @@ package nl.logiconline.ld24.states {
 	import nl.logiconline.ld24.entities.EggPlayer;
 	import nl.logiconline.ld24.entities.Player;
 	import nl.logiconline.ld24.entities.droppables.Poo;
+	import nl.logiconline.ld24.entities.interactables.Bed;
 	import nl.logiconline.ld24.entities.interactables.Books;
 	import nl.logiconline.ld24.entities.interactables.Bottles;
 	import nl.logiconline.ld24.entities.interactables.Computer;
+	import nl.logiconline.ld24.entities.interactables.Food;
 	import nl.logiconline.ld24.entities.particles.FloatingText;
 	import nl.logiconline.ld24.gui.Hud;
 	import nl.logiconline.ld24.levels.BaseLevel;
@@ -24,6 +26,8 @@ package nl.logiconline.ld24.states {
 	import nl.logiconline.ld24.utils.Resources;
 	
 	import org.flixel.FlxG;
+	import org.flixel.FlxPoint;
+	import org.flixel.FlxSound;
 	import org.flixel.FlxSprite;
 	import org.flixel.FlxState;
 	import org.flixel.FlxText;
@@ -34,6 +38,9 @@ package nl.logiconline.ld24.states {
 		private var bottles:Bottles;
 		private var computer:Computer;
 		private var chair:FlxSprite;
+		private var bed:Bed;
+		private var food:Food;
+		private var music:FlxSound;
 		public function BaseState() {
 			super();
 		}
@@ -64,18 +71,48 @@ package nl.logiconline.ld24.states {
 			this.chair = new FlxSprite(206,151, Resources.chair);
 			add(this.chair);
 			
-			add(Globals.player);		
+			this.bed = new Bed(15, 178);
+			add(this.bed);
+			
+			this.food = new Food(150,177);
+			add(this.food);
+			
+			add(Globals.player);	
+			
+			this.music = new FlxSound();
+			this.music.loadEmbedded(Resources.music, true);			
+			this.music.play();
 		}	
 		
 		override public function update():void {
 			super.update();
-			FlxG.collide(Globals.player, Globals.currentLevel);			
+			FlxG.collide(Globals.player, Globals.currentLevel);	
 			
-			if(FlxG.keys.justPressed("SIX")) {
-				//add some poo...
-				add(new Poo(Globals.player.x, Globals.player.y + 23));
+			if(Math.round(Globals.intellect) >= 10) {
+				if(Globals.player is EggPlayer) {
+					var player:Player = new BlubberPlayer(new FlxPoint(Globals.player.x, Globals.player.y));
+					this.remove(Globals.player);
+					this.add(player);
+					Globals.player = player;
+					Globals.intellect = 5;
+				} else if(Globals.player is BlubberPlayer) {
+					var player:Player = new BlockyPlayer(new FlxPoint(Globals.player.x, Globals.player.y));
+					this.remove(Globals.player);
+					this.add(player);
+					Globals.player = player;
+					Globals.intellect = 5;
+				} else if(Globals.player is BlockyPlayer) {
+					FlxG.switchState(new EndState);
+				}
 			}
 			
+			
+			if(FlxG.keys.justPressed("SIX")) {
+				//Cheat some brains :-)
+				Globals.alterIntellect(1);
+				
+			}
+/*			
 			if(FlxG.keys.justPressed("SEVEN")) {
 				remove(Globals.player);
 				Globals.player = new EggPlayer(Globals.currentLevel.getStartPoint());
@@ -92,7 +129,7 @@ package nl.logiconline.ld24.states {
 				remove(Globals.player);
 				Globals.player = new BlockyPlayer(Globals.currentLevel.getStartPoint());
 				add(Globals.player);
-			}
+			}*/
 			
 		}
 	}

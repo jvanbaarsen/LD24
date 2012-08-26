@@ -21,9 +21,18 @@ package nl.logiconline.ld24.entities {
 			super.sitSprite.loadGraphic(Resources.player, true, false, 32, 32);
 			super.sitSprite.frame = 20;
 			
+			super.eatSprite = new FlxSprite(145,159);
+			super.eatSprite.loadGraphic(Resources.player, true, false, 32, 32);
+			super.eatSprite.frame = 20;
+			
+			super.sleepSprite = new FlxSprite(17, 158);
+			super.sleepSprite.loadGraphic(Resources.player, true, false, 32, 32);
+			super.sleepSprite.frame = 23;
+			
 			this.addAnimation("clean", [10, 11], 10, true);
-			this.addAnimation("walk", [0], 0, true);
+			this.addAnimation("walk", [0,1], 10, true);
 			this.addAnimation("idle", [0], 0, true);
+			this.addAnimation("read", [26], 0, true);
 			this.frame = 0;
 			
 			

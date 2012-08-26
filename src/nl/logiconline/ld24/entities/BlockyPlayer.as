@@ -20,11 +20,20 @@ package nl.logiconline.ld24.entities {
 			this.addAnimation("idle", [4], 0, true);
 			this.addAnimation("walk", [4, 5], 10, true);
 			this.addAnimation("clean", [14, 15], 10, true);
+			this.addAnimation("read", [28], 0, true);
 			this.frame = 4;
 			
 			super.sitSprite = new FlxSprite(202,135);
 			super.sitSprite.loadGraphic(Resources.player, true, false, 32, 32);
 			super.sitSprite.frame = 22;
+			
+			super.eatSprite = new FlxSprite(145,159);
+			super.eatSprite.loadGraphic(Resources.player, true, false, 32, 32);
+			super.eatSprite.frame = 22;
+			
+			super.sleepSprite = new FlxSprite(17, 158);
+			super.sleepSprite.loadGraphic(Resources.player, true, false, 32, 32);
+			super.sleepSprite.frame = 25;
 		}
 		
 		override public function update():void {

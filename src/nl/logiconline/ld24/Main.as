@@ -14,11 +14,13 @@ package nl.logiconline.ld24 {
 	
 	import org.flixel.FlxG;
 	import org.flixel.FlxGame;
+	import org.flixel.FlxSprite;
 	
 	[SWF(width="640", height="480", backgroundColor="#000000")]
-	public class Main extends FlxGame {
+	[Frame(factoryClass="nl.logiconline.ld24.PreLoader")]
+	public class Main extends FlxGame {		
 		public function Main() {
-			super(320, 240, BaseState, 2, 60, 60, true);
+			super(320, 240, MenuState, 2, 60, 60, true);
 			FlxG.debug = true;
 		}
 	}
